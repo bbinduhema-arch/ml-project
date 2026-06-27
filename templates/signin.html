@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - Smart Siriculture</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+        <a href="{{ url_for('index') }}" class="back-link">Back to Home</a>
+        
+        <div class="auth-header">
+            <h1>Sign In</h1>
+            <p>Welcome back! Please sign in to your account.</p>
+        </div>
+
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+
+        <form class="auth-form" id="signin-form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your password">
+            </div>
+
+            <button type="submit" class="auth-button" id="signin-button">
+                <span id="button-text">Sign In</span>
+            </button>
+        </form>
+
+        <div class="auth-links">
+            <p>Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a></p>
+        </div>
+    </div>
+
+    <!-- Firebase SDK - Load first -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    
+    <!-- Firebase Configuration - Load after SDK -->
+    <script src="{{ url_for('static', filename='js/firebase-config.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+    
+    <script>
+        // Wait for DOM and Firebase to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sign in form handler
+            const signinForm = document.getElementById('signin-form');
+            if (signinForm) {
+                signinForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    const errorMessage = document.getElementById('error-message');
+                    const successMessage = document.getElementById('success-message');
+                    const signinButton = document.getElementById('signin-button');
+                    const buttonText = document.getElementById('button-text');
+                    
+                    // Clear previous messages
+                    errorMessage.classList.remove('show');
+                    successMessage.classList.remove('show');
+                    
+                    // Disable button and show loading
+                    signinButton.disabled = true;
+                    buttonText.innerHTML = '<span class="loading"></span>Signing in...';
+                    
+                    try {
+                        const result = await signIn(email, password);
+                        
+                        if (result.success) {
+                            successMessage.textContent = 'Sign in successful! Redirecting...';
+                            successMessage.classList.add('show');
+                            
+                            // Redirect to Main page after successful sign in
+                            setTimeout(() => {
+                                window.location.href = "{{ url_for('Main') }}";
+                            }, 1500);
+                        } else {
+                            errorMessage.textContent = result.error || 'Failed to sign in. Please try again.';
+                            errorMessage.classList.add('show');
+                            signinButton.disabled = false;
+                            buttonText.textContent = 'Sign In';
+                        }
+                    } catch (error) {
+                        errorMessage.textContent = 'An error occurred. Please try again.';
+                        errorMessage.classList.add('show');
+                        signinButton.disabled = false;
+                        buttonText.textContent = 'Sign In';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

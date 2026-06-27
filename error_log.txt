@@ -1,0 +1,36 @@
+C:\Users\kiran\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\layers\convolutional\base_conv.py:113: UserWarning: Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+  super().__init__(activity_regularizer=activity_regularizer, **kwargs)
+C:\Users\kiran\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\optimizers\base_optimizer.py:86: UserWarning: Argument `decay` is no longer supported and will be ignored.
+  warnings.warn(
+WARNING:absl:Compiled the loaded model, but the compiled metrics have yet to be built. `model.compile_metrics` will be empty until you train or evaluate the model.
+WARNING:absl:Error in loading the saved optimizer state. As a result, your model is starting with a freshly initialized optimizer.
+Traceback (most recent call last):
+  File "C:\Users\kiran\OneDrive\Desktop\Project_2.0\Reshme_Siri\silk_leaf.py", line 19, in <module>
+    model = load_model(filepath)
+            ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kiran\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\saving\saving_api.py", line 196, in load_model
+    return legacy_h5_format.load_model_from_hdf5(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kiran\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\legacy\saving\legacy_h5_format.py", line 118, in load_model_from_hdf5
+    f = h5py.File(filepath, mode="r")
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kiran\AppData\Local\Programs\Python\Python312\Lib\site-packages\h5py\_hl\files.py", line 564, in __init__
+    fid = make_fid(name, mode, userblock_size, fapl, fcpl, swmr=swmr)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\kiran\AppData\Local\Programs\Python\Python312\Lib\site-packages\h5py\_hl\files.py", line 238, in make_fid
+    fid = h5f.open(name, flags, fapl=fapl)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "h5py/_objects.pyx", line 56, in h5py._objects.with_phil.wrapper
+  File "h5py/_objects.pyx", line 57, in h5py._objects.with_phil.wrapper
+  File "h5py/h5f.pyx", line 102, in h5py.h5f.open
+OSError: Unable to synchronously open file (file signature not found)
+Testing imports...
+Silkworm model loaded successfully.
+silk_worm imported successfully
+Error loading model at 'C:\Users\kiran\OneDrive\Desktop\Project_2.0\Reshme_Siri\model2.h5': Unable to synchronously open file (file signature not found)
+Please ensure the model file exists and is a valid Keras model.
+silk_leaf imported successfully
+price imported successfully
+Testing model files existence...
+modellll.h5 exists
+model2.h5 exists

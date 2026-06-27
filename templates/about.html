@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>My Siriculture Project</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      margin-top: 200px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    /* Main heading */
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 2rem;
+      color: rgb(56, 231, 123);
+    }
+
+    /* Subheading */
+    h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      color: rgb(2, 68, 92);
+    }
+
+    /* Description */
+    p {
+      font-size: 1.2rem;
+      text-align: justify;
+      max-width: 80%;
+      margin-left: 10%;
+      margin-bottom: 2rem;
+    }
+
+    /* Team members */
+    .team {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .team-member {
+      width: 250px;
+      margin: 1rem;
+    }
+
+    .team-member img {
+      width: 100%;
+      height: auto;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-member h3 {
+      font-size: 1.5rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .team-member p {
+      font-size: 1.1rem;
+      text-align: center;
+      color: black;
+      margin-bottom: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      font-size: 1rem;
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .team-members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .member {
+      width: 200px;
+      margin: 20px;
+      text-align: center;
+    }
+
+    .member img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .member h3 {
+      margin-top: 10px;
+      font-size: 1.2em;
+    }
+
+    .member p {
+      margin-top: 5px;
+      font-style: italic;
+      font-size: 15px;
+      color: #080505;
+    }
+
+    /* Back button */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 12px 24px;
+      background-color: rgb(56, 231, 123);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .back-button:hover {
+      background-color: rgb(2, 68, 92);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-button::before {
+      content: "← ";
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="javascript:history.back()" class="back-button">Back</a>
+
+  <header>
+    <h1>Welcome to Our Smart Siriculture Project</h1>
+  </header>
+
+  <main>
+    <section>
+      <h2>About Us</h2>
+      <p>We are a team of four passionate individuals who are dedicated to promoting sustainable siriculture practices.
+        Our goal is to help people who want to start their career in this field by providing them with useful resources
+        and knowledge.</p>
+    </section>
+
+    <section>
+      <h2>Our Project</h2>
+      <p>Our project is designed to provide helpful information about siriculture, including good practices and
+        techniques for identifying and treating diseases. We believe that by sharing our knowledge and experience, we
+        can help to improve the industry as a whole and make it more sustainable for future generations.</p>
+    </section>
+
+    <section>
+      <h2>Meet Our Team</h2>
+      <div class="team-members">
+        <div class="member">
+          <!-- <img src="{{url_for('static',filename='images/chehan1.jpeg')}}" alt="Member 1"> -->
+          <h3>Harshitha </h3>
+
+        </div>
+        <div class="member">
+          <!-- <img src="{{url_for('static',filename='images/Nijagna.jpg')}}" alt="Member 2"> -->
+          <h3>Keerthana</h3>
+
+        </div>
+        <div class="member">
+          <!-- <img src="{{url_for('static',filename='images/nishhay.jpg')}}" alt="Member 3"> -->
+          <h3>Aruna P</h3>
+
+        </div>
+        <div class="member">
+          <!-- <img src="{{url_for('static',filename='images/rajith.jpg')}}" alt="Member 4"> -->
+          <h3>Sinchana</h3>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section>
+      <h2>UNDER THE GUIDANCE</h2>
+      <div class="team-members">
+        <div class="member">
+          <!-- <img src="{{url_for('static',filename='images/sayeda.jpeg')}}" alt="Member 1"> -->
+          <h3>Prof. Deepu G </h3>
+          <p>Faculty.Dept.CSE, VVIET</p>
+
+        </div>
+        <!-- <div class="member"> 
+                  <img src="{{url_for('static',filename='images/rm.jpg')}}" alt="Member 2">
+                  <h3> Name </h3>
+                  <p>Assistent Professor & Co-Ordinator, </p>
+
+                  
+                </div>
+                <div class="member">
+                    <img src="{{url_for('static',filename='images/kc.jpg')}}" alt="Member 3">
+                    <h3> Name </h3>
+                    <p>Head Of The Dept.CSE </p>
+                   
+                  </div>-->
+
+
+      </div>
+
+    </section>
+  </main>
+
+</body>
+
+</html>

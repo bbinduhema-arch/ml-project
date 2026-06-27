@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <style>
+        /* Style the navigation bar */
+        .navbar {
+            overflow: hidden;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Style the links inside the navigation bar */
+        .navbar a {
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            border-radius: 10px solid rgb(102, 3, 3);
+            float: left;
+            display: block;
+            color: rgb(11, 1, 1);
+            text-align: center;
+            padding: 24px 48px;
+            text-decoration: none;
+            transition: border-color 0.5s ease;
+            font-weight: bold;
+            font-size: 35px;
+            background-image: none;
+        }
+
+        /* Add a hover effect for the links */
+        .navbar a:hover {
+            border-bottom: 2px solid #7d060646;
+            color: black;
+
+        }
+
+        /* Add a "active" class to the current link */
+
+
+        /* Add a background video */
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+        }
+
+        /* Style the content */
+        .content {
+            margin-top: 10%;
+            text-align: center;
+            color: transparent;
+            font-family: Arial, sans-serif;
+            font-size: 60px;
+            -webkit-text-stroke: 1px hsl(57, 92%, 49%);
+            background-image: linear-gradient(hsl(56, 94%, 47%), #efe113);
+            background-repeat: no-repeat;
+            background-clip: text;
+            background-position: -750px 0;
+            animation: backcolor 5s linear infinite;
+
+
+        }
+
+        @keyframes backcolor {
+            100% {
+                background-position: 0;
+            }
+        }
+
+        .pa {
+            margin-top: -80px;
+            text-align: center;
+            color: rgba(220, 135, 37, 0.778);
+            font-family: Arial, sans-serif;
+            font-size: 29px;
+            font-weight: bold;
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <a class="active" href="{{url_for('Home')}}">
+            <a2>Home<a2>
+        </a>
+        <a href="{{url_for('team1')}}">Silkworm Disease Prediction</a>
+        <a href="{{url_for('team2')}}">Leaf Disease Prediction</a>
+        <a href="{{url_for('stage')}}">Stages Information</a>
+        <a href="{{ url_for('price.index') }}">Current Market Price</a>
+        <!-- <a href="{{url_for('signin')}}">Sign In</a> -->
+        <!-- <a href="{{url_for('signup')}}">Sign Up</a> -->
+    </div>
+
+    <!-- Background Video -->
+    <video autoplay loop muted id="background-video">
+        <source src="{{url_for('static',filename='vedio/Silk.mp4')}}" type="video/mp4">
+    </video>
+
+    <!-- Content -->
+    <div class="content">
+        <h1>Smart Siriculture</h1>
+    </div>
+    <p class="pa">Discover the wonders of silk farming with Smart Siriculture</p>
+
+    </div>
+</body>
+
+</html>

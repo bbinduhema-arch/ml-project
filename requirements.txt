@@ -1,0 +1,19 @@
+#tensorflow.compat.v1
+python vr 3.10.10
+pipenv
+flask
+numpy
+pandas
+tensorflow
+scikit-learn
+matplotlib
+seaborn
+requests
+os
+cv2
+Pillow
+beautifulsoup4
+
+%pip install tensorflow
+%pip install matplotlib
+%pip install numpy

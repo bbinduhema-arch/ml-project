@@ -1,0 +1,331 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Styles for large screens */
+        @media (min-width: 1024px) {
+
+            /* Add your styles here */
+            body {
+                background-size: cover;
+            }
+
+            .bd {
+                margin-left: 0;
+                padding-left: 1250px;
+            }
+
+            .fd {
+                margin-left: 0;
+                margin-top: 0;
+            }
+        }
+
+        /* Styles for medium screens */
+        @media (max-width: 1023px) {
+
+            /* Add your styles here */
+            .as {
+                text-align-last: left;
+                text-align-last: center;
+            }
+
+            .details h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Styles for small screens */
+        @media (max-width: 767px) {
+
+            /* Add your styles here */
+            form {
+                margin-left: 10%;
+                width: 80%;
+            }
+
+            .details h2 {
+                font-size: 1.5rem;
+            }
+
+            input[type="submit"] {
+                margin-top: 100px;
+            }
+        }
+
+
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+
+
+        }
+
+
+
+        form {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            text-align: center;
+        }
+
+
+        .details h2 {
+
+            position: relative;
+            top: 100px;
+            margin: auto;
+            color: rgb(18, 231, 231);
+            font-size: 3rem;
+        }
+
+        label:hover {
+            transform: scale(1.03);
+        }
+
+        .details h2 {
+            /* margin-bottom: 300px; */
+            position: relative;
+            top: 100px;
+            margin: auto;
+            color: rgb(18, 231, 231);
+            font-size: 3rem;
+
+        }
+
+
+
+
+        .details h1 {
+            color: rgb(0, 0, 0);
+            padding: 20px;
+            border-radius: 15px;
+            background-color: rgb(8, 8, 8);
+        }
+
+
+        .upload {
+
+            font-size: 20px;
+            background-color: rgb(255, 252, 252);
+            border-radius: 20px;
+            outline: none;
+            width: 500px;
+            color: rgb(0, 0, 0);
+            border: 3px solid lab(28.67% 1.28 -0.91);
+
+
+
+        }
+
+        ::-webkit-file-upload-button {
+            color: rgb(255, 252, 252);
+            padding: 20px;
+            border: 2px solid rgb(201, 6, 6);
+            background-color: rgb(201, 6, 6);
+            border-radius: 15px;
+
+        }
+
+        ::-webkit-file-upload-button:hover {
+            border-radius: 20px;
+            border: 2px solid rgb(177, 174, 174);
+
+
+        }
+
+
+
+        input[type="submit"] {
+            position: static;
+            margin-top: 15px;
+            padding: 15px 35px;
+            background-color: rgb(31, 185, 190);
+            border-radius: 15px;
+            color: black;
+            font-size: 1.5rem;
+            border: 4px solid rgb(31, 185, 190);
+            cursor: pointer;
+        }
+
+
+
+        body {
+            background-image: url("{{ url_for('static', filename='images/Background.jpg') }}");
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* or contain, depending on your need */
+        }
+
+        #ch0 {
+            display: none;
+        }
+
+        #ch1 {
+            display: none;
+        }
+
+        ul {
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        ul li {
+            list-style: none;
+            height: 30px;
+            font-size: large;
+        }
+
+        /* Center control-measures list under the image within the results panel */
+        .fd ul {
+            display: inline-block;
+            text-align: left;
+            margin: 10px auto 0 auto;
+            padding-left: 18px;
+        }
+
+        .fd ul li {
+            text-align: left;
+            margin-bottom: 6px;
+        }
+
+        .bd {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .fd {
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+            background-color: transparent;
+            /* removed dark tab */
+            border-radius: 0;
+            max-width: 760px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .fd h1 {
+            color: rgb(245, 124, 4);
+        }
+
+        .fd h2 {
+            color: rgb(0, 0, 0);
+        }
+
+        .fd img {
+            max-width: 300px;
+            margin-top: 15px;
+            border: 2px solid rgb(18, 231, 231);
+            border-radius: 10px;
+            background: transparent;
+        }
+
+        /* Back button */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 12px 24px;
+            background-color: rgb(56, 231, 123);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .back-button:hover {
+            background-color: rgb(2, 68, 92);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button::before {
+            content: "← ";
+            margin-right: 5px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <a href="{{url_for('Main')}}" class="back-button">Back</a>
+
+    <div class="head">
+        <h1 style="text-align:center;font-size:4rem;">Smart Siriculture</h1>
+    </div>
+
+
+    <div class="bd">
+        <form action="/predict2" method="post" enctype="multipart/form-data" onsubmit="showloading()">
+            <input type="file" name="image" class="upload">
+            <br>
+            <br>
+            <input type="submit" value="Predict">
+        </form>
+    </div>
+
+
+    <div class="fd">
+        {% if pred_output %}
+        <h1>Predicted disease: {{ pred_output }}</h1>
+        <br>
+
+        {% if user_image %}
+        <div>
+            <img src="/{{ user_image }}" alt="Uploaded leaf image" />
+        </div>
+        {% endif %}
+
+        {% if c_m %}
+        <h2>Control measures:</h2>
+        <ul>
+            {% for item in c_m %}
+            {% if item %}
+            <li style="display: list-item;">{{ item }}</li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endif %}
+    </div>
+
+    <div id="ch0" style="align-items: center; position: relative;">
+        <li>het1</li>
+        <li>jdbsd</li>
+    </div>
+
+    <div id="ch1">
+        <li>het2</li>
+        <li>jdbsd</li>
+    </div>
+
+
+
+
+</body>
+
+<script>
+    var greeting = "{{ pred_output }}";
+    console.log(greeting);
+    if (greeting == 0) {
+        document.getElementById("ch0").style.display = "block"
+    }
+    else if (greeting == 1) {
+        document.getElementById("ch1").style.display = "block"
+    } 
+</script>
+
+</html>

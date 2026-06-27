@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Smart Siriculture</title>
+  <style>
+    /* Center the form */
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 80vh;
+    }
+
+    /* Style the input field */
+    select {
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      border-radius: 10px solid rgb(102, 3, 3);
+      display: block;
+      width: 80%;
+      max-width: 500px;
+      height: 60px;
+      padding: 10px;
+      font-size: 24px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      text-align-last: center;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+      background-color: #fff;
+      background-image: none;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+
+    #main {
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+    }
+
+    /* Style the submit button */
+    button[type="submit"] {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #513f75;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    /* Style the header */
+    header {
+      background: linear-gradient(to right, #075799, #bc0640);
+
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Style the footer */
+    footer {
+      background-color: #2f302f;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Back button */
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      padding: 12px 24px;
+      background-color: rgb(56, 231, 123);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    .back-button:hover {
+      background-color: rgb(2, 68, 92);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-button::before {
+      content: "← ";
+      margin-right: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <a href="{{url_for('Main')}}" class="back-button">Back</a>
+
+  <header>
+    <h1>Smart Siriculture</h1>
+  </header>
+  <div id="main">
+    <form method="POST" action="/stage">
+
+      <select id="input" name="input">
+        <option value="" selected disabled hidden>Select an option</option>
+        <option value="week1">week 1</option>
+        <option value="week2">week 2</option>
+        <option value="week3">week 3</option>
+        <option value="week4">week 4</option>
+        <option value="week5">week 5</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+  <footer>
+    <p>&copy; 2025 Smart Siriculture. All rights reserved.</p>
+  </footer>
+  <script>
+    const images = [
+      // '{{url_for('static',filename='images/1.silk.jpeg')}}',
+      '{{url_for('static',filename='images / 2.jfif')}}',
+      '{{url_for('static',filename='images / che.jpeg')}}'
+    ];
+    let index = 0;
+    const select = document.querySelector('#main');
+    select.style.backgroundImage = `url(${images[index]})`;
+    setInterval(() => {
+      select.style.backgroundImage = `url(${images[index]})`;
+      index++;
+      if (index >= images.length) {
+        index = 0;
+      }
+    }, 4000);
+  </script>
+</body>
+
+</html

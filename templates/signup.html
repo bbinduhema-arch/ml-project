@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Smart Siriculture</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+<body>
+    <div class="auth-container">
+        <a href="{{ url_for('index') }}" class="back-link">Back to Home</a>
+        
+        <div class="auth-header">
+            <h1>Sign Up</h1>
+            <p>Create a new account to get started.</p>
+        </div>
+
+        <div id="error-message" class="error-message"></div>
+        <div id="success-message" class="success-message"></div>
+
+        <form class="auth-form" id="signup-form">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required placeholder="Create a password" minlength="6">
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm-password" required placeholder="Confirm your password" minlength="6">
+            </div>
+
+            <button type="submit" class="auth-button" id="signup-button">
+                <span id="button-text">Sign Up</span>
+            </button>
+        </form>
+
+        <div class="auth-links">
+            <p>Already have an account? <a href="{{ url_for('signin') }}">Sign In</a></p>
+        </div>
+    </div>
+
+    <!-- Firebase SDK - Load first -->
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    
+    <!-- Firebase Configuration - Load after SDK -->
+    <script src="{{ url_for('static', filename='js/firebase-config.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/auth.js') }}"></script>
+    
+    <script>
+        // Wait for DOM and Firebase to be ready
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sign up form handler
+            const signupForm = document.getElementById('signup-form');
+            if (signupForm) {
+                signupForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('email').value;
+                    const password = document.getElementById('password').value;
+                    const confirmPassword = document.getElementById('confirm-password').value;
+                    const errorMessage = document.getElementById('error-message');
+                    const successMessage = document.getElementById('success-message');
+                    const signupButton = document.getElementById('signup-button');
+                    const buttonText = document.getElementById('button-text');
+                    
+                    // Clear previous messages
+                    errorMessage.classList.remove('show');
+                    successMessage.classList.remove('show');
+                    
+                    // Validate passwords match
+                    if (password !== confirmPassword) {
+                        errorMessage.textContent = 'Passwords do not match!';
+                        errorMessage.classList.add('show');
+                        return;
+                    }
+                    
+                    // Validate password length
+                    if (password.length < 6) {
+                        errorMessage.textContent = 'Password must be at least 6 characters long!';
+                        errorMessage.classList.add('show');
+                        return;
+                    }
+                    
+                    // Disable button and show loading
+                    signupButton.disabled = true;
+                    buttonText.innerHTML = '<span class="loading"></span>Creating account...';
+                    
+                    try {
+                        const result = await signUp(email, password);
+                        
+                        if (result.success) {
+                            successMessage.textContent = 'Account created successfully! Redirecting to sign in...';
+                            successMessage.classList.add('show');
+                            
+                            // Redirect to sign in page after successful sign up
+                            setTimeout(() => {
+                                window.location.href = "{{ url_for('signin') }}";
+                            }, 1500);
+                        } else {
+                            errorMessage.textContent = result.error || 'Failed to create account. Please try again.';
+                            errorMessage.classList.add('show');
+                            signupButton.disabled = false;
+                            buttonText.textContent = 'Sign Up';
+                        }
+                    } catch (error) {
+                        errorMessage.textContent = 'An error occurred. Please try again.';
+                        errorMessage.classList.add('show');
+                        signupButton.disabled = false;
+                        buttonText.textContent = 'Sign Up';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

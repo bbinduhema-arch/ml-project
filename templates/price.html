@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Karnataka-Market Price</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+  /* set the width of the table to 80% of the screen */
+  table {
+
+    width: 80%;
+    margin: auto;
+    /* align the table to the center */
+    border-collapse: collapse;
+    /* collapse the borders between cells */
+  }
+
+  /* set the borders for the table, th and td elements */
+  table,
+  th,
+  td {
+    margin-top: 10px;
+    border: 1px solid black;
+    padding: 8px;
+    /* add padding to the cells */
+    text-align: center;
+    /* align the text to the center */
+  }
+
+  /* set the background color of the th elements */
+  th {
+    background-color: #ccc;
+  }
+
+  #nav-bar {
+    background-color: rgb(98, 95, 95);
+    margin-top: 10px;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .navbar-nav li a {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .nav-link:hover {
+    color: #88c057;
+  }
+
+  .navbar-toggler {
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  .navbar-toggler:focus,
+  .navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-expand-md .navbar-nav {
+      display: none;
+    }
+
+    .navbar-expand-md .navbar-toggler {
+      display: block;
+    }
+
+    .navbar-expand-md .navbar-toggler-icon {
+      color: #fff;
+      font-size: 2rem;
+    }
+
+    .navbar-expand-md .navbar-toggler:focus,
+    .navbar-expand-md .navbar-toggler:active {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .navbar-expand-md .navbar-toggler.collapsed .navbar-toggler-icon {
+      color: #fff;
+      font-size: 2rem;
+    }
+
+    .navbar-expand-md .navbar-toggler.collapsed:focus,
+    .navbar-expand-md .navbar-toggler.collapsed:active {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .navbar-expand-md .navbar-nav {
+      display: block;
+    }
+  }
+
+  header {
+    background: linear-gradient(to right, #88c057, #f5e050);
+
+    height: 12vh;
+    align-items: center;
+    width: 100%;
+
+  }
+
+  header h1 {
+    padding-top: 20px;
+    text-align: center;
+  }
+
+  /* Back button */
+  .back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 12px 24px;
+    background-color: rgb(56, 231, 123);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+
+  .back-button:hover {
+    background-color: rgb(2, 68, 92);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .back-button::before {
+    content: "← ";
+    margin-right: 5px;
+  }
+</style>
+
+<body>
+  <a href="{{url_for('Main')}}" class="back-button">Back</a>
+
+  <header>
+    <h1>Smart Siriculture</h1>
+  </header>
+
+
+  <nav class="navbar navbar-expand-md navbar " id="nav-bar">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav right">
+        <li class="nav-item">
+          <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#"></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <table border="1px solid">
+    <thead>
+      <tr>
+        <th>Transaction Date</th>
+        <th>Langauage</th>
+        <th> Source of Report</th>
+        <th>PDF</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for date, pdf in pdf_files %}
+      <tr>
+        <td>{{ date }}</td>
+        <td>KANNADA</td>
+        <td>MARKET SECTION</td>
+        <td><a href="{{ url_for('static', filename='pdf/' + pdf) }}">{{ pdf }}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+
+</html>
+<!--
+<!doctype html>
+<html>
+
+<head>
+  <title>Karnataka-Market Price</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<style>
+  /* set the width of the table to 80% of the screen */
+  table {
+
+    width: 80%;
+    margin: auto;
+    /* align the table to the center */
+    border-collapse: collapse;
+    /* collapse the borders between cells */
+  }
+
+  /* set the borders for the table, th and td elements */
+  table,
+  th,
+  td {
+    margin-top: 10px;
+    border: 1px solid black;
+    padding: 8px;
+    /* add padding to the cells */
+    text-align: center;
+    /* align the text to the center */
+  }
+
+  /* set the background color of the th elements */
+  th {
+    background-color: #ccc;
+  }
+
+  #nav-bar {
+    background-color: rgb(98, 95, 95);
+    margin-top: 10px;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .navbar-nav li a {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .nav-link:hover {
+    color: #88c057;
+  }
+
+  .navbar-toggler {
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+  }
+
+  .navbar-toggler:focus,
+  .navbar-toggler:active {
+    outline: none;
+    box-shadow: none;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-expand-md .navbar-nav {
+      display: none;
+    }
+
+    .navbar-expand-md .navbar-toggler {
+      display: block;
+    }
+
+    .navbar-expand-md .navbar-toggler-icon {
+      color: #fff;
+      font-size: 2rem;
+    }
+
+    .navbar-expand-md .navbar-toggler:focus,
+    .navbar-expand-md .navbar-toggler:active {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .navbar-expand-md .navbar-toggler.collapsed .navbar-toggler-icon {
+      color: #fff;
+      font-size: 2rem;
+    }
+
+    .navbar-expand-md .navbar-toggler.collapsed:focus,
+    .navbar-expand-md .navbar-toggler.collapsed:active {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .navbar-expand-md .navbar-nav {
+      display: block;
+    }
+  }
+
+  header {
+    background: linear-gradient(to right, #88c057, #f5e050);
+
+    height: 12vh;
+    align-items: center;
+    width: 100%;
+
+  }
+
+  header h1 {
+    padding-top: 20px;
+    text-align: center;
+  }
+</style>
+
+<body>
+  <a href="{{url_for('Main')}}" class="back-button">Back</a>
+
+  <header>
+    <h1>Smart Siriculture</h1>
+  </header>
+
+
+  <nav class="navbar navbar-expand-md navbar " id="nav-bar">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav right">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About Us</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact Us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+  <table border="1px solid">
+    <thead>
+      <tr>
+        <th>Transaction Date</th>
+        <th>Langauage</th>
+        <th> Source of Report</th>
+        <th>PDF</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for date, pdf in pdf_files %}
+      <tr>
+        <td>{{ date }}</td>
+        <td>KANNADA</td>
+        <td>MARKET SECTION</td>
+        <td><a href="{{ url_for('static', filename='pdf/' + pdf) }}">{{ pdf }}</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+
+</html>
+-->
