@@ -4,112 +4,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Website</title>
+    <title>Smart Sericulture - Main Portal</title>
+    <!-- Google Fonts for modern typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Style the navigation bar */
-        .navbar {
-            overflow: hidden;
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            color: #ffffff;
+        }
+
+        /* Fixed / Sticky Navigation Bar */
+        .navbar-container {
             width: 100%;
-            font-family: Arial, sans-serif;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 16px 24px;
+            background: rgba(13, 24, 18, 0.65);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
         }
 
-        /* Style the links inside the navigation bar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 14px;
+            max-width: 1400px;
+            width: 100%;
+        }
+
+        /* Navigation Links (Pill Tabs) */
         .navbar a {
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-            border-radius: 10px solid rgb(102, 3, 3);
-            float: left;
-            display: block;
-            color: rgb(11, 1, 1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 24px 48px;
             text-decoration: none;
-            transition: border-color 0.5s ease;
-            font-weight: bold;
-            font-size: 35px;
-            background-image: none;
+            color: #f1f5f9;
+            font-size: clamp(14px, 1.15vw, 17px);
+            font-weight: 600;
+            letter-spacing: 0.2px;
+            padding: 11px 22px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
         }
 
-        /* Add a hover effect for the links */
+        /* Hover effect */
         .navbar a:hover {
-            border-bottom: 2px solid #7d060646;
-            color: black;
-
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.24);
+            border-color: rgba(255, 255, 255, 0.45);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
         }
 
-        /* Add a "active" class to the current link */
+        /* Active link */
+        .navbar a.active {
+            background: linear-gradient(135deg, #10b981, #059669);
+            color: #ffffff;
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.45);
+        }
 
+        .navbar a.active:hover {
+            background: linear-gradient(135deg, #18c58b, #07a674);
+            transform: translateY(-2px);
+        }
 
-        /* Add a background video */
+        /* Background Video and Overlay */
         #background-video {
             position: fixed;
-            right: 0;
-            bottom: 0;
-            min-width: 100%;
-            min-height: 100%;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at center, rgba(0, 0, 0, 0.32) 0%, rgba(0, 0, 0, 0.65) 100%);
             z-index: -1;
+            pointer-events: none;
         }
 
-        /* Style the content */
-        .content {
-            margin-top: 10%;
+        /* Centered Hero Content */
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            color: transparent;
-            font-family: Arial, sans-serif;
-            font-size: 60px;
-            -webkit-text-stroke: 1px hsl(57, 92%, 49%);
-            background-image: linear-gradient(hsl(56, 94%, 47%), #efe113);
-            background-repeat: no-repeat;
-            background-clip: text;
-            background-position: -750px 0;
-            animation: backcolor 5s linear infinite;
-
-
+            min-height: 100vh;
+            padding: 100px 24px 40px;
+            z-index: 10;
         }
 
-        @keyframes backcolor {
+        .hero-title {
+            font-size: clamp(42px, 6.5vw, 78px);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin: 0;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #fef08a 0%, #facc15 50%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.7));
+            animation: textGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            0% {
+                filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.7)) drop-shadow(0 0 10px rgba(250, 204, 21, 0.2));
+            }
             100% {
-                background-position: 0;
+                filter: drop-shadow(0 4px 22px rgba(0, 0, 0, 0.85)) drop-shadow(0 0 25px rgba(250, 204, 21, 0.45));
             }
         }
 
-        .pa {
-            margin-top: -80px;
-            text-align: center;
-            color: rgba(220, 135, 37, 0.778);
-            font-family: Arial, sans-serif;
-            font-size: 29px;
-            font-weight: bold;
-            text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        .hero-subtitle {
+            margin-top: 18px;
+            font-size: clamp(18px, 2.2vw, 28px);
+            font-weight: 500;
+            color: #f8fafc;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.85), 0 0 20px rgba(0, 0, 0, 0.5);
+            max-width: 850px;
+            line-height: 1.45;
+        }
+
+        /* Responsive handling for smaller screens / tablets */
+        @media (max-width: 900px) {
+            .navbar-container {
+                padding: 12px 16px;
+            }
+            .navbar {
+                gap: 8px;
+                flex-wrap: wrap;
+            }
+            .navbar a {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+            .hero-container {
+                padding-top: 130px;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .navbar {
+                gap: 6px;
+            }
+            .navbar a {
+                padding: 7px 12px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <div class="navbar">
-        <a class="active" href="{{url_for('Home')}}">
-            <a2>Home<a2>
-        </a>
-        <a href="{{url_for('team1')}}">Silkworm Disease Prediction</a>
-        <a href="{{url_for('team2')}}">Leaf Disease Prediction</a>
-        <a href="{{url_for('stage')}}">Stages Information</a>
-        <a href="{{ url_for('price.index') }}">Current Market Price</a>
-        <!-- <a href="{{url_for('signin')}}">Sign In</a> -->
-        <!-- <a href="{{url_for('signup')}}">Sign Up</a> -->
-    </div>
+    <!-- Top Navigation Bar -->
+    <header class="navbar-container">
+        <nav class="navbar">
+            <a class="active" href="{{url_for('Home')}}">Home</a>
+            <a href="{{url_for('team1')}}">Silkworm Disease Prediction</a>
+            <a href="{{url_for('team2')}}">Leaf Disease Prediction</a>
+            <a href="{{url_for('stage')}}">Stages Information</a>
+            <a href="{{ url_for('price.index') }}">Current Market Price</a>
+        </nav>
+    </header>
 
-    <!-- Background Video -->
-    <video autoplay loop muted id="background-video">
-        <source src="{{url_for('static',filename='vedio/Silk.mp4')}}" type="video/mp4">
+    <!-- Background Video & Dark Contrast Overlay -->
+    <video autoplay loop muted playsinline id="background-video">
+        <source src="{{url_for('static', filename='vedio/Silk.mp4')}}" type="video/mp4">
     </video>
+    <div class="video-overlay"></div>
 
-    <!-- Content -->
-    <div class="content">
-        <h1>Smart Siriculture</h1>
-    </div>
-    <p class="pa">Discover the wonders of silk farming with Smart Siriculture</p>
-
-    </div>
+    <!-- Centered Hero Content -->
+    <main class="hero-container">
+        <h1 class="hero-title">Smart Siriculture</h1>
+        <p class="hero-subtitle">Discover the wonders of silk farming with Smart Siriculture</p>
+    </main>
 </body>
 
 </html>
